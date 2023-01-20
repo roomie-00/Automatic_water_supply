@@ -1,0 +1,23 @@
+import RPi.GPIO as GPIO
+import time
+
+GPIO.setmode(GPIO.BCM)
+buzzer = 1 # GPIO 1 (ID_SC, Board모드의 28번)
+scale = [ 330, 294, 262, 294, 330, 330, 330, 294, 294, 294, 330, 330, 330 ]
+GPIO.setup(buzzer, GPIO.OUT) #출력
+
+p = GPIO.PWM(buzzer, 10) # 주파수 : 10
+p.start(100) #
+p.ChangeDutyCycle(5)
+
+water_weight = 0 # 임시 물 무게 설정
+
+if (무게 < 줘야하는 물양):
+    for i in range(len(scale)):
+        p.ChangeFrequency(scale[i])
+        time.sleep(0.1)
+        p.ChangeDutyCycle(0)
+        time.sleep(0.1)
+        p.ChangeDutyCycle(5)
+p.stop()
+GPIO.cleanup()
